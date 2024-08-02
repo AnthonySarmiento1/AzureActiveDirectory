@@ -7,9 +7,10 @@ This Project consists of steps on how to:
   
 <li>Set up VMs using Microsoft Azure</li>
 <li>Install Active directory</li>
+<li>Add Domain Admins</li>
+<li></li>
 <li></li>
 <li>Use PowerShell to generate 1,000 users in AD</li>
-<li></li>
 </ol>
 
 <h2>Languages and Utilities Used</h2>
@@ -25,8 +26,6 @@ This Project consists of steps on how to:
 - <b>Windows 10</b> 
 
 <h2>Program walk-through:</h2>
-
-### <a href="">words</a>
 
 <details><summary><h3>Part 1: Setup</h3></summary>
 
@@ -199,8 +198,8 @@ Now, log into the Client as the admin user created and go to System Settings>Rem
 In the box at the bottom, type in "Domain Users" and Check Names. Next, click OK.
 
 <img src="https://i.imgur.com/JXijlI7.png" height="60%" width="60%" alt="9"/><br />
-
-<h2>Step 6: Creating Domain Users</h2>
+</details>
+<details><summary><h3>Part 6: Creating Domain Users</h3></summary>
 
 In the Domain Controller, open "Windows PowerShell ISE." Make sure to open it as Administrator. Click "New File" in the top left corner.
 
@@ -241,3 +240,4 @@ Go to Server Manager>Tools>Active Directory Users and Computers. Under the "_EMP
 These names are all randomly generated. Choose one and log into the Client VM with the username it is assigned. (Remember the password is "AnthonyPass")
 
 <img src="https://i.imgur.com/LoWC3Er.png" height="50%" width="50%" alt="9"/><br />
+</details>
