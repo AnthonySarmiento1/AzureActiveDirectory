@@ -5,11 +5,9 @@
 This Project consists of steps on how to:
  <ol type = "1">
   
-<li>Set up VMs using Microsoft Azure</li>
-<li>Install Active directory</li>
-<li>Add Domain Admins</li>
-<li></li>
-<li></li>
+<li>Set up Azure VMs & Install Active directory</li>
+<li>Create a Domain Admin</li>
+<li>Configure DNS settings & Remote Connection as a Domain Admin</li>
 <li>Use PowerShell to generate 1,000 users in AD</li>
 </ol>
 
@@ -27,7 +25,7 @@ This Project consists of steps on how to:
 
 <h2>Program walk-through:</h2>
 
-<details><summary><h3>Part 1: Setup</h3></summary>
+<details><summary><h3>Part 1: Setup👷</h3></summary>
 
 First, using Azure, create a Resource Group. Now, make 2 Virtual Machines(VMs). One will be the Domain Controller and the other will be the Client. To make the Domain Controller, give the VM a name and assign it to the Resource Group created before. 
 
@@ -85,9 +83,6 @@ Right-click and Enable both rules. Now go back to the Client VM and check on the
 
 <img src="https://i.imgur.com/2YNRrzi.png" height="80%" width="80%" alt="9"/><br />
 
-</details>
-<details><summary><h3>Part 2: Installing Active Directory</h3></summary>
-
 Now time to Install Active Directory. Go to the Domain Controller. In "Server Manager" click on "Add roles and features."
 
 <img src="https://i.imgur.com/0BcdJpW.png" height="80%" width="80%" alt="9"/><br />
@@ -116,7 +111,7 @@ After Installing the VM will reboot. Once it is rebooted, Log back into the Doma
 
 <img src="https://i.imgur.com/nT5uFiT.png" height="55%" width="55%" alt="9"/><br />
 </details>
-<details><summary><h3>Part 3: Creating a Domain Admin</h3></summary>
+<details><summary><h3>Part 2: Creating a Domain Admin :crown: </h3></summary>
 
 Once logged in, using Server Manager click on tools in the top-right corner. Next, click on "Active Directory Users and Computers."
 
@@ -151,7 +146,7 @@ Now, click "Apply." The user has successfully been added to the Domain Admins se
 
 <img src="https://i.imgur.com/oECi1Rd.png" height="50%" width="50%" alt="9"/><br />
 </details>
-<details><summary><h3>Part 4: Setting Client DNS Settings to Domain Controller Private IP Address</h3> </summary>
+<details><summary><h3>Part 3: Setting Client DNS Settings to Domain Controller Private IP Address :signal_strength: </h3> </summary>
 
 First, on Azure go to the Client VM. Next, go to the Networking tab and click on the Network Interface.
 
@@ -184,9 +179,6 @@ Now check the bubble next to "Domain" then type in the domain name (Your domain 
 
 Success. The VM will now restart after a short period.
 
-</details>
-<details><summary><h3>Part 5: Setting up Remote Connection for Domain Users</h3></summary>
-
 Now, log into the Domain Controller. Go back to Server Manager>Tools>Active Directory Users and Computers. Under the Domain container, go to the "Computers" tab. It should show that the client has been added to the list.
 
 <img src="https://i.imgur.com/TT1JXxR.png" height="80%" width="80%" alt="9"/><br />
@@ -199,7 +191,7 @@ In the box at the bottom, type in "Domain Users" and Check Names. Next, click OK
 
 <img src="https://i.imgur.com/JXijlI7.png" height="60%" width="60%" alt="9"/><br />
 </details>
-<details><summary><h3>Part 6: Creating Domain Users</h3></summary>
+<details><summary><h3>Part 4: Creating Domain Users :couple: </h3></summary>
 
 In the Domain Controller, open "Windows PowerShell ISE." Make sure to open it as Administrator. Click "New File" in the top left corner.
 
@@ -208,11 +200,11 @@ In the Domain Controller, open "Windows PowerShell ISE." Make sure to open it as
 
 Next, copy and paste the script from this link into the text editor. 
 
-https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1
+https://github.com/AnthonySarmiento1/AzureActiveDirectory/blob/main/PowerShell%20Scripts/BulkUsersCreator.ps1
 
-Choose "1_CREATE_USERS.ps1".
+Choose "BulkUsersCreator.ps1".
 
-<img src="https://i.imgur.com/m6N6m4j.png" height="80%" width="80%" alt="9"/><br />
+<img src="https://i.imgur.com/GzmEkmQ.png" height="80%" width="80%" alt="9"/><br />
 
 Run "Set-ExecutionPolicy Unrestricted" in the command line.
 
@@ -228,9 +220,9 @@ Change the directory to "script".
 cd C:\Users\tsmith\Desktop\1_CREATE_USERS.psy
 ```
 
-Now, click the Run button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass") Example below:
+Now, click the Run button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass")
 
-<img src="https://i.imgur.com/IN8xvda.png" height="65%" width="65%" alt="9"/><br />
+
 <img src="https://i.imgur.com/RMyC0Co.png" height="80%" width="80%" alt="9"/><br />
 
 Go to Server Manager>Tools>Active Directory Users and Computers. Under the "_EMPLOYEES" tab, look at all of the users created from the script.
