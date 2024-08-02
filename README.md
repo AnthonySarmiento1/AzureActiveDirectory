@@ -5,42 +5,40 @@
 This Project consists of steps on how to:
  <ol type = "1">
   
-<li>n</li>
+<li>Set up VMs using Microsoft Azure</li>
+<li>Install Active directory</li>
 <li></li>
-<li></li>
+<li>Use PowerShell to generate 1,000 users in AD</li>
 <li></li>
 </ol>
 
 <h2>Languages and Utilities Used</h2>
 
-- <b></b> 
-- <b></b>
-- <b></b>
-- <b></b>
-- <b></b>
-- <b></b>
+- <b>Active Directory Domain Services</b> 
+- <b>Remote Desktop</b>
+- <b>PowerShell</b>
+- <b>Microsoft Azure</b>
+
 <h2>Environments Used </h2>
 
-- <b></b> 
-- <b></b> 
-- <b></b>
+- <b>Windows Server 2022</b> 
+- <b>Windows 10</b> 
+
 <h2>Program walk-through:</h2>
 
 ### <a href="">words</a>
 
-<h3>Part 1:</h3>
+<details><summary><h3>Part 1: Setup</h3></summary>
 
-<h3>Part 1: Setup</h3>
-
-First, using Azure, create a Resource Group. Now, create 2 Virtual Machines(VMs). One will be the Domain Controller and the other will be the Client. To create the Domain Controller, give the VM a name as well as assign it to the Resource Group created before. 
+First, using Azure, create a Resource Group. Now, make 2 Virtual Machines(VMs). One will be the Domain Controller and the other will be the Client. To make the Domain Controller, give the VM a name and assign it to the Resource Group created before. 
 
 <img src="https://i.imgur.com/uYfHMQG.png" height="70%" width="70%" alt="9"/><br />
 
-Now for the image use Windows Server 2022. It is recommended for the size to use 2 vcpus.
+Now for the image use Windows Server 2022. It is recommended for the size to use 2 cores.
 
 <img src="https://i.imgur.com/FNoA7m0.png" height="70%" width="70%" alt="9"/><br />
 
-Give the admin log in credentials that can be remembered or just write them down in notepad. Now, click "Next" until reaching the "Networking" tab. Take note of the "Virtual Network" created. This will be important when creating the Client VM. Check the box under Licensing then "Review and create" the VM.
+Give the admin login credentials that can be remembered or just write them down in Notepad. Now, click "Next" until reaching the "Networking" tab. Take note of the "Virtual Network" created. This will be important when creating the Client VM. Check the box under Licensing then "Review and create" the VM.
 
 <img src="https://i.imgur.com/NxXFK16.png" height="70%" width="70%" alt="9"/><br />
 
@@ -54,7 +52,7 @@ Now it's time to set the Domain Controller's NIC Private IP to static. Go to the
 
 <img src="https://i.imgur.com/6W2WZTA.png" height="60%" width="60%" alt="9"/><br />
 
-Now, go the "IP configurations" tab and click on the IP configuration. 
+Now, go to the "IP Configurations" tab and click on the IP configuration. 
 
 <img src="https://i.imgur.com/0R53K7r.png" height="60%" width="60%" alt="9"/><br />
 
@@ -62,19 +60,19 @@ Now, change the Allocation from "Dynamic" to "Static." Then click Save.
 
 <img src="https://i.imgur.com/JAGBZtk.png" height="60%" width="60%" alt="9"/><br />
 
-Now, using the user and password created before, login to the Client with it's IP address in Remote Desktop Connection. 
+Now, using the user and password created before, log in to the Client with its IP address in Remote Desktop Connection. 
 
 <img src="https://i.imgur.com/28TrmKg.png" height="55%" width="55%" alt="9"/><br />
 
-Now, using Command Prompt, ping the Domain Controller with it's Private IP Address. Type in "ping (Your DC Private IP) -t" to perpetually ping. For now it will time out.
+Using Command Prompt, ping the Domain Controller with its Private IP Address. Type "ping (Your DC Private IP) -t" to perpetually ping. For now, it will time out.
 
-```commandline
+```command line
 ping 10.0.0.4 -t
 ```
 
 <img src="https://i.imgur.com/1zyrIUN.png" height="80%" width="80%" alt="9"/><br />
 
-Next its time to enable ICMPv4. First, login to the Domain Controller VM then open "Windows Defender Firewall with Advanced Security" 
+Next, it's time to enable ICMPv4. First, login to the Domain Controller VM then open "Windows Defender Firewall with Advanced Security" 
 
 <img src="https://i.imgur.com/bYkAEwk.png" height="85%" width="85%" alt="9"/><br />
 
@@ -88,13 +86,14 @@ Right-click and Enable both rules. Now go back to the Client VM and check on the
 
 <img src="https://i.imgur.com/2YNRrzi.png" height="80%" width="80%" alt="9"/><br />
 
-<h3>Part 2: Installing Active Directory</h3>
+</details>
+<details><summary><h3>Part 2: Installing Active Directory</h3></summary>
 
 Now time to Install Active Directory. Go to the Domain Controller. In "Server Manager" click on "Add roles and features."
 
 <img src="https://i.imgur.com/0BcdJpW.png" height="80%" width="80%" alt="9"/><br />
 
-Click "Next" until reaching the "Server Roles" section. Now, check the box next to "Active Directory Domain Services" then "Add Features."
+Click "Next" until reaching the "Server Roles" section. Now, check the box next to "Active Directory Domain Services" and then "Add Features."
 
 <img src="https://i.imgur.com/K5oTmkD.png" height="80%" width="80%" alt="9"/><br />
 
@@ -108,7 +107,7 @@ A window will pop up for a Configuration Wizard. Check the bubble next to "Add a
 
 <img src="https://i.imgur.com/BefHqfW.png" height="80%" width="80%" alt="9"/><br />
 
-Give it a DSRM password (Required but wont be used in this tutorial) Click next.
+Give it a DSRM password, Click next.
 
 <img src="https://i.imgur.com/TYXfTrJ.png" height="80%" width="80%" alt="9"/><br />
 
@@ -117,10 +116,10 @@ Next, the NETBIOS domain will be made. This may take a moment. Once it is made, 
 After Installing the VM will reboot. Once it is rebooted, Log back into the Domain Controller with the domain name and the username. Example below.
 
 <img src="https://i.imgur.com/nT5uFiT.png" height="55%" width="55%" alt="9"/><br />
+</details>
+<details><summary><h3>Part 3: Creating a Domain Admin</h3></summary>
 
-<h3>Part 3: Creating a Domain Admin</h3>
-
-Once logged in, using Server Manager click on tools in the top-right corner. Next click on "Active Directory Users and Computers."
+Once logged in, using Server Manager click on tools in the top-right corner. Next, click on "Active Directory Users and Computers."
 
 <img src="https://i.imgur.com/grdGvPg.png" height="70%" width="70%" alt="9"/><br />
 
@@ -132,7 +131,7 @@ Name the OU "_ADMINS", then click OK. In the "_ADMINS" tab, create a new "User"
 
 <img src="https://i.imgur.com/gUev6rr.png" height="80%" width="80%" alt="9"/><br />
 
-Name this anything. Just remember the user and password. Uncheck the box that is next to "User must change password at next logon." This wont be necessary. Click next then click Finish.
+Name this anything. Just remember the user and password. Uncheck the box that is next to "User must change password at next logon." This won't be necessary. Click next then click Finish.
 
 <img src="https://i.imgur.com/fmMKhNj.png" height="50%" width="50%" alt="9"/><br />
 <img src="https://i.imgur.com/S0c7T05.png" height="50%" width="50%" alt="9"/><br />
@@ -149,11 +148,11 @@ Choose the "Domain Admins" option then click OK
 
 <img src="https://i.imgur.com/eHOKSWT.png" height="80%" width="80%" alt="9"/><br />
 
-Now, click "Apply." The user has successfully been added to the Domain Admins security group. Click OK. Now logout of the Domain controller and re-log as the user just created.
+Now, click "Apply." The user has successfully been added to the Domain Admins security group. Click OK. Now log out of the Domain controller and re-log as the user just created.
 
 <img src="https://i.imgur.com/oECi1Rd.png" height="50%" width="50%" alt="9"/><br />
-
-<h3>Part 4: Setting Client DNS Settings to Domain Controller Private IP Address</h3>
+</details>
+<details><summary><h3>Part 4: Setting Client DNS Settings to Domain Controller Private IP Address</h3> </summary>
 
 First, on Azure go to the Client VM. Next, go to the Networking tab and click on the Network Interface.
 
@@ -179,14 +178,15 @@ Now Click on "Change..."
 
 <img src="https://i.imgur.com/zKDbFIs.png" height="50%" width="50%" alt="9"/><br />
 
-Now check the bubble next to "Domain" then type in the domain name (Your own domain name). There should be window that pops up for a login. Use the admin previously created to login. Example below:
+Now check the bubble next to "Domain" then type in the domain name (Your domain name). There should be a window that pops up for a login. Use the admin previously created to login. Example below:
 
 <img src="https://i.imgur.com/nT3wd3q.png" height="80%" width="80%" alt="9"/><br />
 <img src="https://i.imgur.com/oVmTUG5.png" height="40%" width="40%" alt="9"/><br />
 
 Success. The VM will now restart after a short period.
 
-<h3>Part 5: Setting up Remote Connection for Domain Users</h3>
+</details>
+<details><summary><h3>Part 5: Setting up Remote Connection for Domain Users</h3></summary>
 
 Now, log into the Domain Controller. Go back to Server Manager>Tools>Active Directory Users and Computers. Under the Domain container, go to the "Computers" tab. It should show that the client has been added to the list.
 
@@ -196,7 +196,7 @@ Now, log into the Client as the admin user created and go to System Settings>Rem
 
 <img src="https://i.imgur.com/oKxoprK.png" height="80%" width="80%" alt="9"/><br />
 
-In the box at the bottom, type in "Domain Users" and Check Names. Next click OK.
+In the box at the bottom, type in "Domain Users" and Check Names. Next, click OK.
 
 <img src="https://i.imgur.com/JXijlI7.png" height="60%" width="60%" alt="9"/><br />
 
@@ -217,19 +217,19 @@ Choose "1_CREATE_USERS.ps1".
 
 Run "Set-ExecutionPolicy Unrestricted" in the command line.
 
-```commandline
+```command line
 Set-ExecutionPolicy Unrestricted
 ```
 
 <img src="https://i.imgur.com/xCzIjyZ.png" height="65%" width="65%" alt="9"/><br />
 
-Change directory to script.
+Change the directory to "script".
 
-```commandline
+```command line
 cd C:\Users\tsmith\Desktop\1_CREATE_USERS.psy
 ```
 
-Now, click the Run button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "Password1") Example below:
+Now, click the Run button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass") Example below:
 
 <img src="https://i.imgur.com/IN8xvda.png" height="65%" width="65%" alt="9"/><br />
 <img src="https://i.imgur.com/RMyC0Co.png" height="80%" width="80%" alt="9"/><br />
@@ -238,12 +238,6 @@ Go to Server Manager>Tools>Active Directory Users and Computers. Under the "_EMP
 
 <img src="https://i.imgur.com/f2xPlao.png" height="80%" width="80%" alt="9"/><br />
 
-These names are all randomly generated. Choose one and log into the Client VM with the username it is assigned. (Remember the password is "Password1)
+These names are all randomly generated. Choose one and log into the Client VM with the username it is assigned. (Remember the password is "AnthonyPass")
 
 <img src="https://i.imgur.com/LoWC3Er.png" height="50%" width="50%" alt="9"/><br />
-
-Congrats! You completed this tutorial.
-
-<h2>Conclusion</h2>
-
-Active Directory is crucial for organizations to effectively control their network traffic and prevent unauthorized access to internal networks or leakage of information to external parties. Understanding and learning about Active Directory is a fundamental principle for all IT professionals, regardless of their specific roles. Hope you found this blog both informative and valuable.
