@@ -6,7 +6,7 @@ This Project consists of steps on how to:
  <ol type = "1">
   
 <li>Set up Azure VMs & Install Active directory</li>
-<li>Create a Domain Admin</li>
+<li>Creating a Domain Admin, and service accounts</li>
 <li>Configure DNS settings & Remote Connection as a Domain Admin</li>
 <li>Use PowerShell to generate 1,000 users in AD</li>
 </ol>
