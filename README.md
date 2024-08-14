@@ -14,14 +14,13 @@ This Project consists of steps on how to:
 <h2>Languages and Utilities Used</h2>
 
 - <b>Active Directory</b> 
-- <b>Remote Desktop Protocol</b>
 - <b>PowerShell</b>
+- <b>Server Manager</b>
 - <b>Microsoft Azure</b>
-
+- <b>Remote Desktop Protocol</b>
 <h2>Environments Used </h2>
 
 - <b>Windows Server 2022</b> 
-- <b>Windows 10</b> 
 
 <h2>Program walk-through:</h2>
 
