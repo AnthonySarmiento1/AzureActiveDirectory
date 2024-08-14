@@ -120,12 +120,10 @@ Change the directory to "script".
 cd C:\Users\tsmith\Desktop\1_CREATE_USERS.psy
 ```
 
-Now, click the Run button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass")
+Now, click the "Run" button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass")
 
 
 <img src="https://i.imgur.com/RMyC0Co.png" height="80%" width="80%" alt="9"/><br />
-
-Go to Server Manager>Tools>Active Directory Users and Computers. Under the "_EMPLOYEES" tab, look at all of the users created from the script.
 
 <img src="https://i.imgur.com/dnmirvw.png" height="80%" width="80%" alt="9"/><br />
 
