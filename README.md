@@ -7,8 +7,8 @@ This Project consists of steps on how to:
   
 <li>Set up Azure VMs & Install Active directory</li>
 <li>Created Organizational Units, Groups, and users</li>
-<li>Used Powershell to generate 1,000 users in AD</li>
-<li>Use PowerShell to generate 1,000 users in AD</li>
+<li>Preformed password resets, modified user account data, onboarding/offboarding Users</li>
+<li>Used PowerShell to generate 1,000 users in AD</li>
 </ol>
 
 <h2>Languages and Utilities Used</h2>
@@ -82,7 +82,17 @@ Next, within USA-West In the "Users" OU I created a new user group to represent 
 
 
 </details>
-<details><summary><h3>Part 3: Creating 1,000 Domain Users :couple: </h3> </summary>
+<details><summary><h3>Part 3: Managing Users 🔅 </h3> </summary>
+
+
+
+
+
+
+
+
+</details>
+<details><summary><h3>Part 4: Creating 1,000 Domain Users with Powershell :couple: </h3></summary>
 
 In the Domain Controller, open "Windows PowerShell ISE." Make sure to open it as Administrator. Click "New File" in the top left corner.
 
@@ -93,7 +103,7 @@ Next, copy and paste the script from this link into the text editor.
 
 https://github.com/AnthonySarmiento1/AzureActiveDirectory/blob/main/PowerShell%20Scripts/BulkUsersCreator.ps1
 
-Choose "BulkUsersCreator.ps1".
+Choose "BulkUsersCreator.ps1". This Script will create a username that is the first letter of a user's first name and then the last name along with a default password that can be changed later.
 
 <img src="https://i.imgur.com/GzmEkmQ.png" height="80%" width="80%" alt="9"/><br />
 
@@ -118,18 +128,8 @@ Now, click the Run button to run the script. This will start creating domain use
 
 Go to Server Manager>Tools>Active Directory Users and Computers. Under the "_EMPLOYEES" tab, look at all of the users created from the script.
 
-<img src="https://i.imgur.com/f2xPlao.png" height="80%" width="80%" alt="9"/><br />
+<img src="https://i.imgur.com/dnmirvw.png" height="80%" width="80%" alt="9"/><br />
 
-
-
-
-
-
-
-
-
-</details>
-<details><summary><h3>Part 4: Creating Domain Users :couple: </h3></summary>
 
 
 
