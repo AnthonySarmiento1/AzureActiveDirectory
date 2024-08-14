@@ -29,9 +29,11 @@ This Project consists of steps on how to:
 
 First, using Microsoft Azure, create a new virtual machine. This VM will host active directory and be using Windows Server 2022
 
-<img src="https://i.imgur.com/uYfHMQG.png" height="70%" width="70%" alt="9"/><br />
+<img src="https://i.imgur.com/cHuNbev.png" height="70%" width="70%" alt="9"/><br />
 
-<img src="https://i.imgur.com/FNoA7m0.png" height="70%" width="70%" alt="9"/><br />
+<img src="https://i.imgur.com/db22gUT.png" height="70%" width="70%" alt="9"/><br />
+
+<img src="https://i.imgur.com/3ARVoGy.png" height="70%" width="70%" alt="9"/><br />
 
 Now create the needed admin login credentials for signing into the VM. A .rdp application will download to your PC. Upon opening the .rdp application Your admin credentials will need to be filled out every time to connect to the Azure VM.
 
