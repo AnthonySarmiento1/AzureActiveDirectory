@@ -43,7 +43,7 @@ Click "Next" until reaching the "Server Roles" section. Now, check the box next 
 
 <img src="https://i.imgur.com/K5oTmkD.png" height="80%" width="80%" alt="9"/><br />
 
-Click Next until reaching the "Confirmation" tab then click "Install." It may take a while to install. Once it says "Configuration required. Installation succeeded on (Your DC name here). Click "Close"
+Click Next until reaching the "Confirmation" tab then click "Install." It may take a while to install. Once it says "Configuration required. Click "Close"
 
 A window will pop up for a Configuration Wizard. Check the bubble next to "Add a new forest" then give it a domain (Example in image below) Click next.
 
@@ -53,9 +53,7 @@ Give it a DSRM password, Click next.
 
 <img src="https://i.imgur.com/TYXfTrJ.png" height="80%" width="80%" alt="9"/><br />
 
-Next, the NETBIOS domain will be made. This may take a moment. Once it is made, Click next until reaching the "Prerequisites Check" tab. This process will take a moment. Now click "Install"
-
-After Installing the VM will reboot. Once it is rebooted, Log back into the Domain Controller with the domain name and the username. 
+Next, the NETBIOS domain will be made. This may take a moment. Once it is made, Click next until reaching the "Prerequisites Check" tab. This process will take a moment. Now click "Install" After Installing the VM will reboot.
 
 </details>
 <details><summary><h3>Part 2: Creating a Domain Admin :crown: </h3></summary>
