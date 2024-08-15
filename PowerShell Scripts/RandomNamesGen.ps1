@@ -8,14 +8,21 @@ $outputFile = ".\names.txt"
 function Generate-RandomName {
     $consonants = @('b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z')
     $vowels = @('a','e','i','o','u')
+
+    if ($consonants.Count -eq 0 -or $vowels.Count -eq 0) {
+        throw "Consonants or vowels array is empty."
+    }
+
     $nameLength = Get-Random -Minimum 3 -Maximum 7
     $name = ""
 
     for ($i = 0; $i -lt $nameLength; $i++) {
         if ($i % 2 -eq 0) {
-            $name += $consonants[Get-Random -Minimum 0 -Maximum ($consonants.Count - 1)]
+            $index = Get-Random -Minimum 0 -Maximum ($consonants.Count - 1)
+            $name += $consonants[$index]
         } else {
-            $name += $vowels[Get-Random -Minimum 0 -Maximum ($vowels.Count - 1)]
+            $index = Get-Random -Minimum 0 -Maximum ($vowels.Count - 1)
+            $name += $vowels[$index]
         }
     }
 
