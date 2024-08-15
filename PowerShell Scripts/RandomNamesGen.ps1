@@ -1,40 +1,39 @@
-# Define the number of unique names to generate
-$numberOfNames = 1000
+$PASSWORD_FOR_USERS   = "Anthony123$"
+$USER_FIRST_LAST_LIST = Get-Content .\names.txt
 
-# Define the output file
-$outputFile = ".\names.txt"
+$password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
 
-# Function to generate a random name
-function Generate-RandomName {
-    $consonants = @('b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z')
-    $vowels = @('a','e','i','o','u')
-    $nameLength = Get-Random -Minimum 3 -Maximum 7
-    $name = ""
+# Create Organizational Unit if it does not already exist
+if (-not (Get-ADOrganizationalUnit -Filter { Name -eq "_USERS" } -ErrorAction SilentlyContinue)) {
+    New-ADOrganizationalUnit -Name "_USERS" -ProtectedFromAccidentalDeletion $false
+}
 
-    for ($i = 0; $i -lt $nameLength; $i++) {
-        if ($i % 2 -eq 0) {
-            $name += $consonants[Get-Random -Minimum 0 -Maximum ($consonants.Count - 1)]
-        } else {
-            $name += $vowels[Get-Random -Minimum 0 -Maximum ($vowels.Count - 1)]
-        }
+foreach ($n in $USER_FIRST_LAST_LIST) {
+    $parts = $n.Split(" ", 2) # Split into 2 parts: first and last names
+    if ($parts.Length -lt 2) {
+        Write-Host "Skipping invalid entry: $n" -ForegroundColor Red
+        continue
     }
 
-    return $name.Substring(0,1).ToUpper() + $name.Substring(1).ToLower()
+    $first = $parts[0]
+    $last = $parts[1]
+
+    # Capitalize the first letter of each name and make the rest lowercase
+    $first = $first.Substring(0,1).ToUpper() + $first.Substring(1).ToLower()
+    $last = $last.Substring(0,1).ToUpper() + $last.Substring(1).ToLower()
+
+    # Concatenate first and last name with a space and convert to lowercase for the username
+    $username = "$($first)$($last)".ToLower()
+
+    Write-Host "Creating user: $($username)" -BackgroundColor Black -ForegroundColor Cyan
+
+    New-ADUser -AccountPassword $password `
+               -GivenName $first `
+               -Surname $last `
+               -DisplayName "$($first) $($last)" ` # Include space here for display name
+               -Name $username `
+               -EmployeeID $username `
+               -PasswordNeverExpires $true `
+               -Path "ou=_USERS,$(([ADSI]"").distinguishedName)" `
+               -Enabled $true
 }
-
-# Initialize a hashset to store unique names
-$uniqueNames = [System.Collections.Generic.HashSet[string]]::new()
-
-# Generate unique names
-while ($uniqueNames.Count -lt $numberOfNames) {
-    $firstName = Generate-RandomName
-    $lastName = Generate-RandomName
-    $fullName = "$firstName $lastName"
-
-    $uniqueNames.Add($fullName) | Out-Null
-}
-
-# Write unique names to the output file
-$uniqueNames | Out-File -FilePath $outputFile -Encoding UTF8
-
-Write-Host "Generated $($uniqueNames.Count) unique names and saved to $outputFile" -ForegroundColor Green
