@@ -1,6 +1,8 @@
 $PASSWORD_FOR_USERS   = "AnthonyPass123$"
 $NUMBER_OF_ACCOUNTS_TO_CREATE = 1000
 
+$outputFile = ".\names.txt"
+
 Function generate-random-name() {
     $consonants = @('b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z')
     $vowels = @('a','e','i','o','u')
