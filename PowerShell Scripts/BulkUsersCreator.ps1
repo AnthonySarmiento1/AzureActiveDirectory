@@ -1,44 +1,28 @@
 $PASSWORD_FOR_USERS   = "AnthonyPass123$"
-$NUMBER_OF_ACCOUNTS_TO_CREATE = 1000
+$USER_FIRST_LAST_LIST = Get-Content .\names.txt
+$password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
+New-ADOrganizationalUnit -Name _USERS -ProtectedFromAccidentalDeletion $false
 
-Function generate-random-name() {
-    $consonants = @('b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z')
-    $vowels = @('a','e','i','o','u')
-    $nameLength = Get-Random -Minimum 3 -Maximum 9
-    $count = 0
-    $name = ""
+foreach ($n in $USER_FIRST_LAST_LIST) {
+    $first = $n.Split(" ")[0]
+    $last = $n.Split(" ")[1]
 
-    while ($count -lt $nameLength) {
-        if ($($count % 2) -eq 0) {
-            $name += $consonants[$(Get-Random -Minimum 0 -Maximum $($consonants.Count - 1))]
-        }
-        else {
-            $name += $vowels[$(Get-Random -Minimum 0 -Maximum $($vowels.Count - 1))]
-        }
-        $count++
-    }
+    # Capitalize the first letter of each name and make the rest lowercase
+    $first = $first.Substring(0,1).ToUpper() + $first.Substring(1).ToLower()
+    $last = $last.Substring(0,1).ToUpper() + $last.Substring(1).ToLower()
 
-    return $name
-
-}
-
-$count = 1
-while ($count -lt $NUMBER_OF_ACCOUNTS_TO_CREATE) {
-    $fisrtName = generate-random-name
-    $lastName = generate-random-name
-    $username = $fisrtName + '.' + $lastName
-    $password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
+    # Concatenate first and last name and convert to lowercase
+    $username = "$($first)$($last)".ToLower()
 
     Write-Host "Creating user: $($username)" -BackgroundColor Black -ForegroundColor Cyan
 
     New-AdUser -AccountPassword $password `
-               -GivenName $firstName `
-               -Surname $lastName `
+               -GivenName $first `
+               -Surname $last `
                -DisplayName $username `
                -Name $username `
                -EmployeeID $username `
                -PasswordNeverExpires $true `
-               -Path "ou=_EMPLOYEES,$(([ADSI]`"").distinguishedName)" `
+               -Path "ou=_USERS,$(([ADSI]`"").distinguishedName)" `
                -Enabled $true
-    $count++
 }
