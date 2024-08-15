@@ -112,15 +112,9 @@ In the Domain Controller, open "Windows PowerShell ISE." Make sure to open it as
 <img src="https://i.imgur.com/I3165Lu.png" height="85%" width="85%" alt="9"/><br />
 <img src="https://i.imgur.com/Y5BAh4S.png" height="80%" width="80%" alt="9"/><br />
 
-Next, copy and paste the script from this link into the text editor. 
 
-https://github.com/AnthonySarmiento1/AzureActiveDirectory/blob/main/PowerShell%20Scripts/BulkUsersCreator.ps1
 
-Choose "BulkUsersCreator.ps1". This Script will create a username that is the first letter of a user's first name and then the last name along with a default password that can be changed later.
-
-<img src="https://i.imgur.com/GzmEkmQ.png" height="80%" width="80%" alt="9"/><br />
-
-Run "Set-ExecutionPolicy Unrestricted" in the command line.
+Run "Set-ExecutionPolicy Unrestricted" in the command line to allow for scripts.
 
 ```command line
 Set-ExecutionPolicy Unrestricted
@@ -128,13 +122,14 @@ Set-ExecutionPolicy Unrestricted
 
 <img src="https://i.imgur.com/xCzIjyZ.png" height="65%" width="65%" alt="9"/><br />
 
-Change the directory to "script".
+Next, copy and paste the script from this link into the text editor. 
 
-```command line
-cd C:\Users\[Username]\Desktop\BulkUsersCreator.ps1
-```
+https://github.com/AnthonySarmiento1/AzureActiveDirectory/blob/main/PowerShell%20Scripts/BulkUsersCreator.ps1
 
-Now, click the "Run" button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass")
+Choose "BulkUsersCreator.ps1". This Script will create a username that is the first letter of a user's first name and then the last name along with a default password that can be changed later.
+
+<img src="https://i.imgur.com/SUUz1mN.png" height="80%" width="80%" alt="9"/><br />
+Now, click the "Run" button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass123$")
 
 
 <img src="https://i.imgur.com/RMyC0Co.png" height="80%" width="80%" alt="9"/><br />
