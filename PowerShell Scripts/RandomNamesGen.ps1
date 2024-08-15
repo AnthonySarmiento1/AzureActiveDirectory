@@ -13,7 +13,7 @@ function Generate-RandomName {
         throw "Consonants or vowels array is empty."
     }
 
-    $nameLength = Get-Random -Minimum 3 -Maximum 7
+    $nameLength = Get-Random -Minimum 3 -Maximum 9
     $name = ""
 
     for ($i = 0; $i -lt $nameLength; $i++) {
