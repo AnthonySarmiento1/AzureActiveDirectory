@@ -54,7 +54,7 @@ Give it a DSRM password, Click next.
 
 <img src="https://i.imgur.com/TYXfTrJ.png" height="80%" width="80%" alt="9"/><br />
 
-Next, the NETBIOS domain will be made. This may take a moment. Once it is made, Click next until reaching the "Prerequisites Check" tab. This process will take a moment. Now click "Install" After Installing the VM will reboot.
+Next, the NETBIOS domain will be made. This may take a moment. Once it is made, Click next until the "Prerequisites Check" tab is reached. This process will take a moment. Now click "Install" After Installing the VM will reboot.
 
 Once logged in, using Server Manager click on tools in the top-right corner. Next, click on "Active Directory Users and Computers."
 
@@ -82,10 +82,24 @@ Next, within USA-West In the "Users" OU I created a new user group to represent 
 
 </details>
 <details><summary><h3>Part 3: Managing Users 🔅 </h3> </summary>
+ 
+<li>I was able to reset a user's password by right-clicking on the user and clicking "reset password" which allows us to set a new password.This would be useful if a user may have forgotten their password or must change it due to security concerns.</li>
+
+<img src="https://i.imgur.com/hLmNLIX.png" height="70%" width="70%" alt="9"/><br />
+
+<li>It is also possible to unlock an account if a user knows their password but has been locked out for security reasons. This is possible by double clicking on the user that will open their properties then go to "Account" and "Unlock account" will disable the lockout of that account for a short duration.</li>
+
+<img src="https://i.imgur.com/KpTUESr.png" height="70%" width="70%" alt="9"/><br />
+
+<li>In the "general" tab, within the user properties window user's descriptions can be changed if they moved onto another role within the company, or their office location has been moved. There is also a telephone number, email, or webpage that could be updated.</li>
+
+<img src="https://i.imgur.com/DQYD721.png" height="70%" width="70%" alt="9"/><br />
 
 
+<li></li>
 
 
+<li></li>
 
 
 
@@ -117,7 +131,7 @@ Set-ExecutionPolicy Unrestricted
 Change the directory to "script".
 
 ```command line
-cd C:\Users\tsmith\Desktop\1_CREATE_USERS.psy
+cd C:\Users\[Username]\Desktop\BulkUsersCreator.ps1
 ```
 
 Now, click the "Run" button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass")
@@ -132,3 +146,5 @@ Now, click the "Run" button to run the script. This will start creating domain u
 
 
 </details>
+
+
