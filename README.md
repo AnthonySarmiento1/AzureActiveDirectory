@@ -65,7 +65,9 @@ Once logged in, using Server Manager click on tools in the top-right corner. Nex
 <details><summary><h3>Part 2: Creating Organizational Units and Groups 🌁 </h3></summary>
 
 After installing AD, new organizational units (OU's) can be made by right-clicking on [Domain. name] > "New" > "Organizational Unit". The OU is like a container that can sort between different Users, Groups, Computers, Servers, Subnets, etc
+
 <img src="https://i.imgur.com/QXOcCCi.png" height="70%" width="70%" alt="9"/><br />
+
 After I made 3 OU's USA-East, USA-West, and EU to represent different office locations. Then 3 sub OU's (Computers, users, servers) to separate and organize different assets in the company.
 
 <img src="https://i.imgur.com/LjYgbAo.png" height="70%" width="70%" alt="9"/><br />
@@ -107,7 +109,7 @@ Next, within USA-West In the "Users" OU I created a new user group to represent 
 </details>
 <details><summary><h3>Part 4: Creating 1,000 Domain Users with Powershell :couple: </h3></summary>
 
-In the Domain Controller, open "Windows PowerShell ISE." Make sure to open it as Administrator. Click "New File" in the top left corner.
+Open "Windows PowerShell ISE", and open it as Administrator. Click "New File" in the top left corner.
 
 <img src="https://i.imgur.com/I3165Lu.png" height="85%" width="85%" alt="9"/><br />
 <img src="https://i.imgur.com/Y5BAh4S.png" height="80%" width="80%" alt="9"/><br />
@@ -129,13 +131,13 @@ https://github.com/AnthonySarmiento1/AzureActiveDirectory/blob/main/PowerShell%2
 Choose "BulkUsersCreator.ps1". This Script will create a username that is the first letter of a user's first name and then the last name along with a default password that can be changed later.
 
 <img src="https://i.imgur.com/SUUz1mN.png" height="80%" width="80%" alt="9"/><br />
-Now, click the "Run" button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be "AnthonyPass123$")
+Now, click the "Run" button to run the script. This will start creating domain users with usernames and passwords (The Password for these users will be as default "AnthonyPass123$")
 
 
 <img src="https://i.imgur.com/RMyC0Co.png" height="80%" width="80%" alt="9"/><br />
 
 <img src="https://i.imgur.com/dnmirvw.png" height="80%" width="80%" alt="9"/><br />
-
+This can be used as a good practice for the "find" feature under the "action" tab used to filter for certain Users, Contacts, Groups, etc by using the name of a user or their description.
 
 
 
