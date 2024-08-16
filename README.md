@@ -98,11 +98,6 @@ Next, within USA-West In the "Users" OU I created a new user group to represent 
 <img src="https://i.imgur.com/DQYD721.png" height="70%" width="70%" alt="9"/><br />
 
 
-<li></li>
-
-
-<li></li>
-
 
 
 
